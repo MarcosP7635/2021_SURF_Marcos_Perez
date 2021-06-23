@@ -1,0 +1,2 @@
+If each column is a spectral channel, what is each row? The first column is the wavelength in nm,
+so each row is a different wavelength! Trippy. And the value is the log of intensity ratio (dB?)
