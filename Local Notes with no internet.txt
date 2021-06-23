@@ -1,2 +1,25 @@
 If each column is a spectral channel, what is each row? The first column is the wavelength in nm,
 so each row is a different wavelength! Trippy. And the value is the log of intensity ratio (dB?)
+6/23
+FPR allows the light to propagate - Free propagation region. Ignore the gray vertical line in the 
+greeen region. Silican nitride - 
+Higher index in the pole and lower in the clearing. That's what allows the light to propagate. 
+Waveguides are similar to optical fibers in this respect. High index guides it and low index surrounds
+it! (remember from Hect). Clearing is silicon dioxide and pole is silicon nitride. Everything in Figure 
+1 from Pradip's 2021 paper is silicon nitride. IRL, it's surrounded by silicon dioxide. If I ask the 
+same question twice, ask Pradip to record it. Each channel is symmetrical near the peak wavelength, 
+but as the transmission decreases, they become asymmetrical. The center is symmetrical, but the 
+wings are not. On the edges of the AWG, the incoming (Figure 2 on the 2017 paper. Output FPR)  
+The central output channel will receive the light symmetrically from the left and right sides of the 
+array. The edge channels don't have this advantage, so they see more light from one side of the array
+from the other (inverse square law!). you can individually plot the peaks of each channel and the wings 
+if you want! I think I can just go to Cahill now if I want. Double checking with Dimitri. Sign up for his 
+office hours! It should be fine? The find_peaks function is defined in scipy. There's a text file for
+each channel with its transmission curve. There are two peaks in each column, one corresponding to each
+spectral order. There are tinier peaks in the noise. Find main peaks, not the ones in the noise! 
+That's why we define the distance to be 80% of the FSR. Look at the find_3dB_width. lam_n - lam_{n-1}.
+find_peaks needs it in indices so we divide by the wavelength step size.  
+
+You can do things yourself if pradip doesn't reply. Tomorrow go to campus maybe?
+Get the first plot out with channels vs power! See if we need to change our approach.
+Get your initial plots then replan!!! 
