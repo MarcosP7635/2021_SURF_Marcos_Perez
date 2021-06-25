@@ -9,7 +9,7 @@ it! (remember from Hect). Clearing is silicon dioxide and pole is silicon nitrid
 1 from Pradip's 2021 paper is silicon nitride. IRL, it's surrounded by silicon dioxide. If I ask the 
 same question twice, ask Pradip to record it. Each channel is symmetrical near the peak wavelength, 
 but as the transmission decreases, they become asymmetrical. The center is symmetrical, but the 
-wings are not. On the edges of the AWG, the incoming (Figure 2 on the 2017 paper. Output FPR)  
+wings are not. On the edges of the AWG, the incoming (Figure 2 on the 2017 paper https://arxiv.org/abs/2106.04598. Output FPR)  
 The central output channel will receive the light symmetrically from the left and right sides of the 
 array. The edge channels don't have this advantage, so they see more light from one side of the array
 from the other (inverse square law!). you can individually plot the peaks of each channel and the wings 
