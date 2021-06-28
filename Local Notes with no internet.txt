@@ -13,8 +13,7 @@ wings are not. On the edges of the AWG, the incoming (Figure 2 on the 2017 paper
 The central output channel will receive the light symmetrically from the left and right sides of the 
 array. The edge channels don't have this advantage, so they see more light from one side of the array
 from the other (inverse square law!). you can individually plot the peaks of each channel and the wings 
-if you want! I think I can just go to Cahill now if I want. Double checking with Dimitri. Sign up for his 
-office hours! It should be fine? The find_peaks function is defined in scipy. There's a text file for
+if you want!The find_peaks function is defined in scipy. There's a text file for
 each channel with its transmission curve. There are two peaks in each column, one corresponding to each
 spectral order. There are tinier peaks in the noise. Find main peaks, not the ones in the noise! 
 That's why we define the distance to be 80% of the FSR. Look at the find_3dB_width. lam_n - lam_{n-1}.
@@ -23,3 +22,70 @@ find_peaks needs it in indices so we divide by the wavelength step size.
 You can do things yourself if pradip doesn't reply. Tomorrow go to campus maybe?
 Get the first plot out with channels vs power! See if we need to change our approach.
 Get your initial plots then replan!!! 
+
+Hi Marcos, I see that you changed the find_3dB_width function to add a height = -7. That will not work. This is because, we are first converting the dB-scale transmission to linear scale in that function. See the definition of  op_power_norm_fib_lin in the following code. So -7 as the height will be inconsequential since the 'linear' values are all positive.
+def find_3dB_width(lam, op_power_norm_fib, FSR):
+    d_lam = (lam[len(lam)-1]-lam[0])/len(lam)
+    print(d_lam)
+    FSR_chunk = np.int(0.8*FSR/d_lam) # Taking 80% of the FSR as the minimum distance between the peaks
+    op_power_norm_fib_lin = np.power(10.0,  op_power_norm_fib/10) # converting to linear scale for peak-width measurement
+    peaks, _ = find_peaks(op_power_norm_fib_lin, distance=FSR_chunk)
+
+Marcos Perez  11:17 AM
+Thank you for the correction and I appreciate the explanation. I expect the smallest linear value to be .3 for any of the peaks, so should I use .2 as the threshold instead? Should I not use a threshold at all? I have the original Jupyter Notebook on the Github as well so I can just change that function back to the original if that's better.
+
+Pradip Gatkine  11:18 AM
+Here's the figure I could plot after the correction;
+image.png 
+image.png
+
+
+
+1 reply
+Today at 11:19 AMView thread
+
+Pradip Gatkine  11:19 AM
+So all the peaks are properly detected
+
+Pradip Gatkine  11:22 AM
+If you do height = 0.1 in the find_3dB_width function, then you can get all the peaks correctly, without any additional detection of sidelobes (particularly near the edges).
+
+1 reply
+Today at 11:22 AMView thread
+
+Pradip Gatkine  11:26 AM
+Also, there is another codeblock you have:
+#Now we need to get the peaks!
+lam = np.array(df['0'])
+FSR = 20.0
+op_power_norm_fib = np.array(df['1'])
+peaks = find_3dB_width(lam, op_power_norm_fib, FSR)
+center_nanometer = peaks[1][0]
+print(peaks[1])
+Here, note that you are only looking at one spectral channel (i.e. the first spectral channel), since you are using df['1']. To see the impact of an emission line on all the spectral channels , you will have to run a for loop. (edited) 
+New
+11:28
+Here's the codeblock I used to make the plot shown above.
+fig, ax = plt.subplots(figsize=(10,6))
+df.plot(x='0', legend=0, ax = ax)
+for i in range(1,chan_num+1):
+    lam = np.array(df['0'])
+    op_power_norm_fib = np.array(df[str(i)])
+    FSR = 20 # nm
+    peak_ind, peak_lam, peak_power, peak_width, d_lam = find_3dB_width(lam, op_power_norm_fib, FSR)
+    #plt.plot(lam, op_power_norm_fib)
+    #plt.plot(peak_lam, peak_power, 'b*')
+    plt.plot(peak_lam, peak_power, '*')
+ax.set_ylim(-60,5)
+plt.show()
+Note that this was done using the find_3dB_width function as shown below:
+def find_3dB_width(lam, op_power_norm_fib, FSR):
+    d_lam = (lam[len(lam)-1]-lam[0])/len(lam)
+    print(d_lam)
+    FSR_chunk = np.int(0.8*FSR/d_lam) # Taking 80% of the FSR as the minimum distance between the peaks
+    op_power_norm_fib_lin = np.power(10.0, op_power_norm_fib/10) # converting to linear scale for peak-width measurement
+    peaks, _ = find_peaks(op_power_norm_fib_lin, height=0.1, distance=FSR_chunk)
+    #find_peaks is defind in scipy. You can use it to place the emission lines! Get the array from here
+    results_half = peak_widths(op_power_norm_fib_lin, peaks, rel_height=0.5)  # rel_height = 0.5 => FWHM  (half-power beam width)
+    #you can define offsets in terms of the FWHM named results_half
+    return peaks, lam[peaks], op_power_norm_fib[peaks], d_lam*results_half[0], d_lam  # The zeroth element is width 
