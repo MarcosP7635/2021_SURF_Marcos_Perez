@@ -88,4 +88,24 @@ def find_3dB_width(lam, op_power_norm_fib, FSR):
     #find_peaks is defind in scipy. You can use it to place the emission lines! Get the array from here
     results_half = peak_widths(op_power_norm_fib_lin, peaks, rel_height=0.5)  # rel_height = 0.5 => FWHM  (half-power beam width)
     #you can define offsets in terms of the FWHM named results_half
-    return peaks, lam[peaks], op_power_norm_fib[peaks], d_lam*results_half[0], d_lam  # The zeroth element is width 
+    return peaks, lam[peaks], op_power_norm_fib[peaks], d_lam*results_half[0], d_lam  # The zeroth element is width
+
+Change the plots from power (arbitrary units) to dB so they're logarithmic and you can see the 
+difference in each channel. This is an important distinction. Make sure to add this!
+
+Make a rectangular grid of subplots. Keep it to the peaks of 7 channels.
+2 rows and four columns. Don't need a long label (lambda_cen) is sufficient and can be 
+slightly above the plot. 
+State the shaped and width in the caption. 
+ 
+ax1.text(0.08,  0.90, '$z$ = 2 $-$ 2.7', color='blue', fontsize=12, fontweight='bold', transform = ax1.transAxes)
+    You can have the handles for the subplots as an array. 
+    You can just assign ax1 = ax[row][col] and that will work
+    You can reassign ax1 in a for loop.
+    This also works as well 
+    ax1 = ax[index[0]][index[1]]
+    ax1.set_xscale('linear')
+    ax1.set_yscale('linear')
+Also there's a really compact way to assign specific attributes to each subplot
+ax1 = plot_format(ax1, xlim1=11, xlim2=13, ylim1= NVVlim1, ylim2= NVVlim2, xlabel=xlabel, ylabel=ylabel) 
+Just add the power for multiple lines, and you can use a for loop to do this. 
