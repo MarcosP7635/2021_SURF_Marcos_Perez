@@ -109,3 +109,70 @@ ax1.text(0.08,  0.90, '$z$ = 2 $-$ 2.7', color='blue', fontsize=12, fontweight='
 Also there's a really compact way to assign specific attributes to each subplot
 ax1 = plot_format(ax1, xlim1=11, xlim2=13, ylim1= NVVlim1, ylim2= NVVlim2, xlabel=xlabel, ylabel=ylabel) 
 Just add the power for multiple lines, and you can use a for loop to do this. 
+Remember the chanels are circular in nature! It loops back from channel 1 to channel 13 ! 
+It can move to the previous or next spectral order. The channels are numbered from right to left. 
+We can clearly see that lines 3 channels separated are seperable. Just from two channel widths, it does not 
+appear to be resolvable. Halfway between peaks is the worst case scenario. Difficult to tell if it's 
+two or 3 lines without that information. In terms of the callibration matrix, can the callibration
+matrix provide us with better information than the plots I made? Do we need the callibration matrix?
+We planned to brainstorm what we could resolve based on the plots. The callibration matrix might help
+too in the worst case scenarios. Ideally, the way the resolving power of an AWG is defined, 
+(in astro it's just the 3dB width of the peaks). Here, 3dB is sufficient. (width at 3dB less than the
+ peak). Here 3dB is the resolving power (usual definition) but that would really overestimate our
+ability to resolve with a discrete AWG. There are conditions where we can't resolve lines separated
+by 3x the 3dB width.
+Now try lines separated by 1 spectral channel. 
+Knowing the LSF ahead of time, you can tell whether there are 1 or 2 lines. Would not call them resolved
+(could be a broad line or two different very close lines that are unresolved). 
+Even when centered around the peaks and not offset. 
+
+Two possible next steps - 
+Callibration matrix (more mathy). Given a matrix of inputs 
+The AWG matrix (A) dot product with a spectrum matrix (S) gives us the observed matrix (O)
+A \cdot S = O
+(A matrix rows are the wavelength response for a single channel. x axis is the wavelength 
+axis and the y axis is the channel. Like in the dataframe! as many channels as rows and 
+as many wavelength elements as columns)
+(S matrix is the height! a column matrix with a height for each wavelength element.)
+O is also a column matrix with a power output for each channel (as many cols as channels)
+"Invert" the A matrix by referring to one of the papers Pradip sent that talked about the math. 
+A transpose and then a square matrix, then invert that. 
+	Small quick step bc need to transition to PSIsim with the resolving power and planet spectra.
+		Next week!
+Revisit the math paper and try to "invert" A, which we call B, and then S = B.O
+As a pilot study, we'll simulate the KPIC setup. Tomorrow, as a short test, we should use a continuous
+AWG as well. Pradip will send a new dataframe to use. In a continuous, AWG, there will be a peak of a 
+channel at the 3dB width. So there will be a peak every 3dB width. Since the peaks are so close,
+there will be a lot more cross talk! Lots of interference and the LSF will be broad. The resolving
+power will be better. Find the resolving power and AWG. Will probably use this for PSIsim. 
+Since it's a continuous AWG and the peaks are so close to each, resolving power and LSF will depend
+less on the wavelength since the 3dB width won't contribute that much. 
+Low cross talk cases are different. 3dB width is the FWHM! 
+
+Figure out a way to from the A matrix to the B matrix. The plots are sufficient for our own 
+understanding. Keeping them in plots is good. Make just a few plots for the continuous AWG.
+Each peak,then halfway between the peaks to see the wavelength dependence and the resolving 
+power. 39-40 channels. Make around 10 plots (later) 4x2 or 4x3 should work for our purposes.
+
+Friday I should mention my results briefly. Here's the problem, and I've done the first step
+(LSF and resolving power) using this step. Compress it to 5 minutes! 
+Don't include the captions since I'll be summarizing them. Label each set of plots (e.g. single emission line at AWG peaks, single emission line halfway between two peaks) 
+- Simulate spectra and simulate AWG. What is an AWG, goals (find atmospheric components like water, oxygen, methane) [1 slide background]
+- Subproblem - LSF and resolving power since it's nontrivial for a photonic spectrograph and strategy we've been using (single and multiple lines at the peaks and offsets) [1 slide] (slide 6 from the presentation Pradip sent me)
+- Snapshot of the code (since a lot of it is automated and Pradip really likes it!). Use a snapshot of the Emission_line class on Github. 
+- Results [first slide at peaks with no offset and the one with the .7nm offset below it] 
+- Results [separation at 1 channel width]. (what we have now is good, use the top row of slide 5). 
+Tried a few different combinations to see whethere we could resolve 2 spectral lines or just 1. 
+What if I tried to resolve any seperation first and then shift it to the peaks to see? This seems dumb.
+ 
+Don't be extensive in the group meeting.
+Use the presentation to prep for the final presentation at the end of SURF. Reuse some of the material
+for Tuesday! 
+The deadline passed for the one Dimitri mentioned. There will be more every few months with SPEI.
+The only drawback is that you have to submit 6 months ahead of time. Paper deadline is 1 month before
+the conference. Next year! June 2022 SPEI astronomical instrumentation. All kinds of SPEI conferences!
+OSA (Optical Society of America). Summers and winters usually. There will be more opportunities!!
+No shortage of opportunities!  
+5-10 minute catch up tomorrow at 10 AM. 
+Overleaf adds new stuff all the time! 
+
