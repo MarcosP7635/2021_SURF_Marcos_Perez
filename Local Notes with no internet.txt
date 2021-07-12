@@ -176,3 +176,30 @@ No shortage of opportunities!
 5-10 minute catch up tomorrow at 10 AM. 
 Overleaf adds new stuff all the time! 
 
+Imager and spectrograph in one. Spaxel (spatial and pixel elements to get the spectrum for each pixel). 
+Spectral cube! High redshift galaxies! 
+Use the downloaded Webex desktop app. It might not let you share your screen but it should
+be fine.
+Lots of the spectra are readily available from PICASO. 
+Gj! :) 
+In the group meeting, explain what the plots are in the second slides 
+(each color is a different discrete spectral channel) and we've plotted the transmission
+for different wavelength ranges.
+Show a narrow line and a broadline from one of the papers. Wavelength vs output and
+pixel vs output. Narrow input, wider output. Show the concept of the LSF. Use 
+graphs. Crop out the 3rd panel for Friday's meeting. Friday has a broader audience
+so be more deliberate about the explanation. I showed the inputs which is good!
+Show that the shape of the LSF is wavelength dependent by just shifting the wavelengths
+by half a spectral channel! 
+Go with normalized emission lines! Each emission has the same noramlized power (same 
+area under the curve). Larger points and shrink the figure. Don't spend too much time
+making them the same figure. Just keep it like this for right now. Reformat with
+the continuous case. Second column, top and third look similar. Say each difference out 
+loud. Switch column to and 3. compare 1 and 2. then compare 2 and 3. then compare column 
+3 and the bottom name. Refer to them by column # and what they're measuring!
+Presentation tip: have a red rectangle come between 1 and 2. Make an animation 
+highlighting each of the plots you want to highlight. For future presentations!   
+Don't worry about the Gaussian emission lines right now. Maybe 1 or 2 runs later.
+Use the builtin function Pradip is sending to make the Gaussian function. Not very high
+priority. Continuous AWG is more important. Good to have just in case but not rn. Will
+move on. 
