@@ -206,3 +206,6 @@ move on.
 
 Find the resolution? 
 Add vertical lines to indicate the peaks of each line.
+
+When we observe the lines, we correct for noise in the tails. In a conventional spectrograph,
+the source spectrum convolved with the LSF is our observation. 
