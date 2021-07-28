@@ -209,3 +209,25 @@ Add vertical lines to indicate the peaks of each line.
 
 When we observe the lines, we correct for noise in the tails. In a conventional spectrograph,
 the source spectrum convolved with the LSF is our observation. 
+7/28/21
+Get the 3dB width! 
+Do the Gaussian fit in linear space? lognormal is misnomer since we want the log of the Gaussian,
+which is different! Do the fitting in linear space and then convert! 1 or .5 nm for the width guess.
+Don't mix log and linear space!  Math in linear space and plots in log space.
+Keep the calculations and what space.
+Reuse the first interim report and add the new plots! 
+Try a Gaussian emission line instead! 
+Plot line width vs 3dB width of Gaussian fit. Draw a dashed line when the slope of the line increases.
+Being able to resolve two lines (show that a fit of two Gaussians is better than a singular Gaussian)
+is a better way to measure the resolution of the spectrograph. This is a more direct definition
+but it's not as common :( The 3dB width will let us compare to other spectrometers.
+Finalize this with a Gaussian emission line. (Just always use a Gaussian line from now on). 
+Add Lorentzian? Just stick with a Gaussian for right now. (In nature you might see a convolution
+of a Gaussian and a Lorentzian but that's really computationally intensive). Maybe add a Lorentzian
+later.  
+
+A few hours to fix the code, then abstract and report by the of the day. 
+First Draft - Send anytime tomorrow! 
+Go with oral presentation for SURF and poster for SPIE or any other conferences. Exoplanet conference
+in November or March (ExoCal at JPL cohosted with IPAC) and very welcoming with SURF and high schoolers.
+Plot the average and the raw data for the FWHM. 
