@@ -231,3 +231,31 @@ First Draft - Send anytime tomorrow!
 Go with oral presentation for SURF and poster for SPIE or any other conferences. Exoplanet conference
 in November or March (ExoCal at JPL cohosted with IPAC) and very welcoming with SURF and high schoolers.
 Plot the average and the raw data for the FWHM. 
+
+Problem with memory allocation, use hard drive to fix
+Try looking where the virtual machine lives on my Windows machine. 
+It should be a singular file (like a .iso) to check its size.
+It already takes up over 7 GB, so I think it's out of space.
+Give it more memory! 25 GB for the data and spectra. 
+Some of the installation didn't work on collaboratory (floating system so installation is required 
+each time, and it's a lot to handle all of the environment variables). Lots of things are version
+dependent, and some parts won't work on older versions.
+Gas cells in EPL and tunable laser source (borrowed from JPL), most accurate way to do it by sweeping wavelengths
+Training for characterization, currently being used. 
+fiber - 10 micron, very small modes
+~2 weeks from now. training before school starts! 
+fix input, align fiber, align with outpout channel, sweep the laser by lambda, record on power meter.
+Repeat for different channels.  In this case, the AWG is higher resolution and lower FSR. 
+Use the calibration matrix, then pass a continuous light source through the gass cell to measure the 
+full spectrum and then retrieve it. With the power meter, try to recreate the real spectrum! 
+Aim for journals like those by SPIE with the experiments and exoplanet spectra too!
+Pradip is scheduling it sooner and the waveguides are already aligned!!
+	Great to get started very quickly. It may only take a week to collect all the data! 
+
+9/11/2021
+It looks good on the second screen with 1680 x 1050 resolution (16:10 width ratio).
+It's actually perfect on host screen 2 (my monitor not my laptop) 1920 x 1200 (16:10). 
+Scale 100%
+Ctrl + Alt + t opens the terminal in Ubuntu
+type "lab_release -a" to check the version of Ubuntu installed. I have 20.04 so I'll be
+following this tutorial to install Anaconda

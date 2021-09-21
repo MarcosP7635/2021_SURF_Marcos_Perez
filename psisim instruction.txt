@@ -1,0 +1,73 @@
+102) Install PSISIM (and related packages)
+    Needed for PSISIM work
+    (Done in Ubuntu - vfndev)
+*** NOTE since we made and are using a new conda environment (see #101), be careful to install all these python packages and such into the Katie_env environment!!!
+    * Roughly followed install procedure on PSISIM git README.md
+    In Termal, navigate to/make "PSISIM_Work" directory --> git clone https://github.com/planetarysystemsimager/psisim.git
+    - Should print "Cloning into 'psisim'" more stuff and then finally "Resolving deltas: […]"
+    Navigate into newly made "psisim" directory and enter: "pip install -e ."
+    To Test: "python3" --> "import PyAstronomy" --> "import speclite" --> both imports should work without any issue
+    Setup Pysynphot:
+    - The pip install installs pysynphot but doesn't finish setting it up; we do that as stated below
+    - Download "Pickles" and "Castelli-Kurucz" stellar models from: https://pysynphot.readthedocs.io/en/latest/
+    - Also download the "mtab" files
+    - Make new directory for storing the pysynphot files: "mkdir PysynphotFiles" (note, not in psisim dir)
+    - Move the downloaded .tar files into that directory. Untar them using "tar -xzvf synphot2.tar.gz" 
+    - delete the original .tar files "rm synphot*"
+    - Create an environment variable as required:
+      - Open ~/.bashrc file. At the bottom, add: " export PYSYN_CDBS=/media/Data_Drive/VFN/PSISIM_Work/PysynphotFiles/grp/redcat/trds/"
+      - Deactivate conda environment. Then "source ~/.bashrc". Then "conda activate Katie_env"
+    - To Test: "python3" --> "import pysynphot" should work with no warnings or errors
+    Setup Auxiliary files:
+    - Download the auxiliary files from: https://caltech.app.box.com/s/ce7hgt56usd1vfvzhn2kv8n7d9cojro6
+    - Unzip the resulting .zip directory. Move it into the PSISIM_Work directory.
+    - Modify the "throughputs" file within the downloaded directory to not have the s at the end
+    Install EXOSIMS:
+    - Roughly followed https://exosims.readthedocs.io/en/latest/install.html
+    - In terminal (in PSISIM_Work dir): "git clone --depth 1 --branch v2.1.2 https://github.com/dsavransky/EXOSIMS.git"
+    - "cd EXOSIMS" --> "pip install ."
+    - In Terminal: "mkdir /media/Data_Drive/VFN/PSISIM_Work/EXOSIMS_CACHE" 
+    - Create an environment variable as required:
+      - Open ~/.bashrc file, at bottom add: "export EXOSIMS_CACHE_DIR=/media/Data_Drive/VFN/PSISIM_Work/EXOSIMS_CACHE"
+    - Repeat for EXOSIMS_DOWNLOADS_DIR
+    - navigate into Exosims_downloads directory and enter: "wget http://naif.jpl.nasa.gov/pub/naif/generic_kernels/spk/planets/de432s.bsp"
+    - "conda deactivate" --> source ~/.bashrc --> "conda activate Katie_env"
+    - To Test: "python3" --> "import EXOSIMS" should work with no warnings or errors
+    Download full high-res phoenix models:
+    - OPTION 1: copy from hcig1 directly (this is the methodI used):
+      - in PSISIM_Work/ETC dir: "scp -r dechever@hcig1.caltech.edu:/scr3/dmawet/ETC/HIResFITS_lib/ ./"
+    - OPTION 2: use filezilla to download using ftp from: ftp://phoenix.astro.physik.uni-goettingen.de/HiResFITS/ 
+    Download sonora files from hcig1. 
+    - OPTION 1: copy from hcig1 directly (this is the method I used):
+      - in PSISIM_Work/ETC dir: "cp -r dechever@hcig1.caltech.edu:/scr3/dmawet/ETC/sonora/ ./"
+    - OPTION 2: download from https://zenodo.org/record/1309035#.YMvu6ahKjtV 
+    Install PICASO
+    - In terminal, navigate to PSISIM_Work directory and then "https://github.com/natashabatalha/picaso.git"
+    - navigate into new picasso directory and then "python3 setup.py install"
+    - In terminal, navigate to "picaso/reference/opacities" and then download the opacity file:
+      - "wget https://zenodo.org/record/3759675/files/opacities.db"
+    - Check validity of download: "md5sum opacities.db" should return: 6a15b4427fbdd79bdaab76f02a248e1c
+    - Create environment variable as required:
+      - open ~/.bashrc file, at bottom add: "export picaso_refdata=/media/Data_Drive/VFN/PSISIM_Work/picaso/reference/"
+    - Download remaining opacity files from hcig1. In picas/reference/opacities directory: 
+      - "scp dechever@hcig1.caltech.edu:/home/dechever/Code/picaso/reference/opacities/Natasha* ./"
+      - "scp dechever@hcig1.caltech.edu:/home/dechever/Code/picaso/reference/opacities/all_opacities* ./"
+    - Download chem_full.pic file from hcig1. In picaso/reference/chemistry directory:
+      - "scp dechever@hcig1.caltech.edu:/home/dechever/Code/picaso/reference/chemistry/chem_full.pic ./"
+
+103) Install Jupyter Notebook
+    Needed for PSISIM work
+    (Done in Ubuntu - vfndev)
+    Roughly followed: https://jupyter.org/install
+    - First, make sure you are in the "Katie_env" conda environment
+    - Then, in Terminal: "conda install -c conda-forge notebook". When prompted, enter "y" 
+
+####################################################
+####################################################
+___6/21/2021___
+104) Install Astroquery package
+    Needed for cross-listing YMG Gaia accelerators with known binaries (making a new VFN target list)
+    (Done in Ubuntu - vfndev)
+    Roughly followed: https://astroquery.readthedocs.io/en/latest/ 
+    In terminal, make sure you are in the conda "Katie_env" environment. Then: "conda install -c conda-forge astroquery" 
+    - when prompted, hit "y" to accept the install.
