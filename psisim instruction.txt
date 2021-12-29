@@ -14,7 +14,7 @@
     - Make new directory for storing the pysynphot files: "mkdir PysynphotFiles" (note, not in psisim dir)
     - Move the downloaded .tar files into that directory. Untar them using "tar -xzvf synphot2.tar.gz" 
     - delete the original .tar files "rm synphot*"
-    - Create an environment variable as required:
+    - Create an environment variable as required:tar 
       - Open ~/.bashrc file. At the bottom, add: " export PYSYN_CDBS=/media/Data_Drive/VFN/PSISIM_Work/PysynphotFiles/grp/redcat/trds/"
       - Deactivate conda environment. Then "source ~/.bashrc". Then "conda activate Katie_env"
     - To Test: "python3" --> "import pysynphot" should work with no warnings or errors
@@ -32,7 +32,7 @@
     - Repeat for EXOSIMS_DOWNLOADS_DIR
     - navigate into Exosims_downloads directory and enter: "wget http://naif.jpl.nasa.gov/pub/naif/generic_kernels/spk/planets/de432s.bsp"
     - "conda deactivate" --> source ~/.bashrc --> "conda activate Katie_env"
-    - To Test: "python3" --> "import EXOSIMS" should work with no warnings or errors
+    - To Test: "python3" --> "imPport EXOSIMS" should work with no warnings or errors
     Download full high-res phoenix models:
     - OPTION 1: copy from hcig1 directly (this is the methodI used):
       - in PSISIM_Work/ETC dir: "scp -r dechever@hcig1.caltech.edu:/scr3/dmawet/ETC/HIResFITS_lib/ ./"
