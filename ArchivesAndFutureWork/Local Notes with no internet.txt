@@ -159,7 +159,7 @@ Friday I should mention my results briefly. Here's the problem, and I've done th
 Don't include the captions since I'll be summarizing them. Label each set of plots (e.g. single emission line at AWG peaks, single emission line halfway between two peaks) 
 - Simulate spectra and simulate AWG. What is an AWG, goals (find atmospheric components like water, oxygen, methane) [1 slide background]
 - Subproblem - LSF and resolving power since it's nontrivial for a photonic spectrograph and strategy we've been using (single and multiple lines at the peaks and offsets) [1 slide] (slide 6 from the presentation Pradip sent me)
-- Snapshot of the code (since a lot of it is automated and Pradip really likes it!). Use a snapshot of the Emission_line class on Github. 
+- Snapshot of the code (since a lot of it is automated and Pradip is enthusiastic!). Use a snapshot of the Emission_line class on Github. 
 - Results [first slide at peaks with no offset and the one with the .7nm offset below it] 
 - Results [separation at 1 channel width]. (what we have now is good, use the top row of slide 5). 
 Tried a few different combinations to see whethere we could resolve 2 spectral lines or just 1. 
